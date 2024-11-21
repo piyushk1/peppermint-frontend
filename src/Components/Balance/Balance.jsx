@@ -8,7 +8,7 @@ const Balance = ({ refresh }) => {
     const fetchBalance = async () => {
       try {
         console.log("Fetching balance...");
-        const response = await axios.get('https://peppermint-backend.onrender.com/transactions/balance');
+        const response = await axios.get('https://peppermint-backend.onrender.com/api/transactions/balance');
         console.log("Balance fetched:", response.data);  
         setBalance(response.data.balance);
       } catch (error) {
