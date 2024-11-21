@@ -10,7 +10,7 @@ const Balance = ({ refresh }) => {
         console.log("Fetching balance...");
         const response = await axios.get('https://peppermint-backend.onrender.com/api/transactions/balance');
         console.log("Balance fetched:", response.data);  
-        setBalance(response.data.balance);
+        setBalance(response.data.netBalance);
       } catch (error) {
         console.error('Error fetching balance', error);
       }
@@ -21,7 +21,7 @@ const Balance = ({ refresh }) => {
 
   return (
     <div style={{ ...balanceContainerStyle, color: balance < 0 ? 'red' : 'green' }}>
-      <h3>Net Balance : Rs. {balance}</h3>
+      <h3>Net Balance : {balance}</h3>
     
     </div>
   );
