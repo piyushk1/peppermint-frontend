@@ -26,13 +26,22 @@ const Transactions = ({ onTransactionDeleted }) => {
     }
   };
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    });
+  };
+
   return (
     <div style={listContainerStyle}>
       <h3 style={listTitleStyle}>Transaction List</h3>
       <ul style={listStyle}>
         {transactions.map((transaction) => (
           <li key={transaction._id} style={transactionItemStyle}>
-            <span>{transaction.type}: ${transaction.amount} - {transaction.description} ({transaction.date})</span>
+            <span>{transaction.type}: ${transaction.amount} - {transaction.description} ({formatDate(transaction.date)})</span>
             <button onClick={() => handleDelete(transaction._id)} style={deleteButtonStyle}>Delete</button>
           </li>
         ))}
