@@ -19,7 +19,8 @@ const App = () => {
       <h1 style={headerStyle}>Expense Tracker</h1>
       <TransactionItem onTransactionAdded={handleTransactionAdded} />
       <Transactions onTransactionDeleted={handleTransactionDeleted} />
-      <Balance />
+      {/* Pass the 'refresh' state to Balance */}
+      <Balance refresh={refresh} />
     </div>
   );
 };

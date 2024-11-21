@@ -1,42 +1,38 @@
-import { useState, useEffect } from 'react';
-import { getBalance } from '../../api';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const Balance = () => {
+const Balance = ({ refresh }) => {
   const [balance, setBalance] = useState(0);
 
   useEffect(() => {
     const fetchBalance = async () => {
       try {
-        const data = await getBalance();
-        setBalance(data);
+        const response = await axios.get('https://peppermint-backend.onrender.com/api/balance');
+        setBalance(response.data.balance);
       } catch (error) {
-        console.error('Error fetching balance:', error);
+        console.error('Error fetching balance', error);
       }
     };
 
     fetchBalance();
-  }, []);
+  }, [refresh]); // Re-fetch balance whenever `refresh` changes
 
   return (
-    <div style={balanceContainerStyle}>
-      <h3 style={balanceTextStyle}>Net Balance: ${balance}</h3>
+    <div style={{ ...balanceContainerStyle, color: balance < 0 ? 'red' : 'green' }}>
+      <h3>Net Balance</h3>
+      <p>{balance}</p>
     </div>
   );
 };
 
+// Inline Styles
 const balanceContainerStyle = {
-  backgroundColor: '#fff',
+  textAlign: 'center',
+  marginTop: '20px',
   padding: '20px',
+  backgroundColor: '#fff',
   borderRadius: '8px',
   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-  marginBottom: '20px',
-  textAlign: 'center',
-};
-
-const balanceTextStyle = {
-  fontSize: '1.5rem',
-  color: '#4caf50',
-  fontWeight: 'bold',
 };
 
 export default Balance;
