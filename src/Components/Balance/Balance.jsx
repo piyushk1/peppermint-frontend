@@ -7,7 +7,9 @@ const Balance = ({ refresh }) => {
   useEffect(() => {
     const fetchBalance = async () => {
       try {
+        console.log("Fetching balance...");
         const response = await axios.get('https://peppermint-backend.onrender.com/api/balance');
+        console.log("Balance fetched:", response.data);  
         setBalance(response.data.balance);
       } catch (error) {
         console.error('Error fetching balance', error);
@@ -19,8 +21,8 @@ const Balance = ({ refresh }) => {
 
   return (
     <div style={{ ...balanceContainerStyle, color: balance < 0 ? 'red' : 'green' }}>
-      <h3>Net Balance: $ {balance}</h3>
-      
+      <h3>Net Balance</h3>
+      <p>{balance}</p>
     </div>
   );
 };
@@ -33,7 +35,6 @@ const balanceContainerStyle = {
   backgroundColor: '#fff',
   borderRadius: '8px',
   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-  margin:'20px'
 };
 
 export default Balance;

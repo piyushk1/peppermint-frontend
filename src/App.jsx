@@ -7,11 +7,13 @@ const App = () => {
   const [refresh, setRefresh] = useState(false);
 
   const handleTransactionAdded = () => {
-    setRefresh((prev) => !prev);  
+    console.log("Transaction Added");
+    setRefresh((prev) => !prev);  // Toggle refresh state
   };
 
   const handleTransactionDeleted = () => {
-    setRefresh((prev) => !prev);
+    console.log("Transaction Deleted");
+    setRefresh((prev) => !prev);  // Toggle refresh state
   };
 
   return (
