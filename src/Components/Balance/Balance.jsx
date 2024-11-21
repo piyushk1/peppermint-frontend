@@ -19,8 +19,8 @@ const Balance = ({ refresh }) => {
 
   return (
     <div style={{ ...balanceContainerStyle, color: balance < 0 ? 'red' : 'green' }}>
-      <h3>Net Balance</h3>
-      <p>{balance}</p>
+      <h3>Net Balance: $ {balance}</h3>
+      
     </div>
   );
 };
